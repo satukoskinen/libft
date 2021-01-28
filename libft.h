@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/20 20:13:22 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/01/24 22:38:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
+void				*ft_realloc(void *ptr, size_t ptr_size, size_t size);
 char				*ft_uintmax_itoa_base(uintmax_t n, int base, int uppercase);
 char				*ft_intmax_itoa_base(intmax_t n, int base);
 

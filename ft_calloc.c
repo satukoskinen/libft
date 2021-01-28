@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/10 08:31:27 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/24 23:40:50 by skoskine         ###   ########.fr       */
+/*   Created: 2021/01/24 22:34:48 by skoskine          #+#    #+#             */
+/*   Updated: 2021/01/24 22:36:27 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void	*new;
-
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
-		new = NULL;
-	}
-	else
-		new = (void*)malloc(new_size);
-	if (new != NULL && ptr != NULL)
-	{
-		ft_memcpy(new, ptr, (old_size > new_size ? new_size : old_size));
-		if (new_size > old_size)
-			ft_memset(&new[old_size], 0, new_size - old_size);
-		free(ptr);
-	}
-	return (new);
+	return (ft_memalloc(count * size));
 }

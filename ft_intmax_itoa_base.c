@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:56:14 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/20 19:30:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/01/25 19:59:30 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char		*ft_intmax_itoa_base(intmax_t n, int base)
 		return (ft_strncat(digit, &base_digits[ft_abs(n % base)], 1));
 	}
 	digit[0] = base_digits[ft_abs(n % base)];
-	if (!(next_digit = ft_itoa_base(n / base, base)))
+	if (!(next_digit = ft_intmax_itoa_base(n / base, base)))
 	{
 		free(digit);
 		return (NULL);

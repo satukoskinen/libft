@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:54:43 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/25 19:58:25 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/02/05 19:34:31 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,9 @@ char		*ft_uintmax_itoa_base(uintmax_t n, int base, int uppercase)
 		base_digits = "0123456789abcdef";
 	if (base < 2 || base > 16 || !(digit = ft_strnew(2)))
 		return (NULL);
-	if (ft_abs(n) >= 0 && ft_abs(n) < base)
-	{
-		if (n < 0 && base == 10)
-			digit[0] = '-';
-		return (ft_strncat(digit, &base_digits[ft_abs(n % base)], 1));
-	}
-	digit[0] = base_digits[ft_abs(n % base)];
+	if (n < (uintmax_t)base)
+		return (ft_strncat(digit, &base_digits[n % base], 1));
+	digit[0] = base_digits[n % base];
 	if (!(next_digit = ft_uintmax_itoa_base(n / base, base, uppercase)))
 	{
 		free(digit);

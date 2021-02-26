@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_dpow.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/24 22:34:48 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 18:46:09 by skoskine         ###   ########.fr       */
+/*   Created: 2021/02/13 09:15:48 by skoskine          #+#    #+#             */
+/*   Updated: 2021/02/15 22:19:17 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
-
-void	*ft_calloc(size_t count, size_t size)
+double	ft_dpow(double base, int power)
 {
-	return (ft_memalloc(count * size));
+	double result;
+
+	result = 1.0;
+	while (power > 0)
+	{
+		result *= base;
+		power--;
+	}
+	return (result);
 }

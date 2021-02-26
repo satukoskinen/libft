@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/24 22:38:34 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/02/16 08:44:02 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,12 @@ int					ft_toupper(int c);
 void				*ft_realloc(void *ptr, size_t ptr_size, size_t size);
 char				*ft_uintmax_itoa_base(uintmax_t n, int base, int uppercase);
 char				*ft_intmax_itoa_base(intmax_t n, int base);
+char				*ft_dtoa(double nbr, size_t precision);
+double				ft_dpow(double base, int power);
+int					ft_isnegative(double nbr);
+int					ft_isnan(double nbr);
+int					ft_isposinf(double nbr);
+int					ft_isneginf(double nbr);
+double				ft_modf(double value, double *iptr);
 
 #endif

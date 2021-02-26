@@ -6,42 +6,16 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:02:24 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/27 22:22:33 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:44:23 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdlib.h>
+#include <math.h>
+#include <stdio.h>
 
-double		ft_modf(double value, double *iptr)
-{
-	int		int_tmp;
-	double	d_tmp;
-
-	int_tmp = (int)value;
-	d_tmp = (double)int_tmp;
-	*iptr = d_tmp;
-	return (value - d_tmp);
-}
-
-static int	add_integral_part(char *result, double nbr, int len)
-{
-	int	i;
-
-	i = 0;
-	
-	return (i);
-}
-
-static int	add_fractional_part(char *result, double nbr, int precision)
-{
-	int	i;
-
-	i = 0;
-	
-	return (i);
-}
-
-static int	get_integral_part_len(double nbr)
+static int		get_int_part_len(long double nbr)
 {
 	int	len;
 
@@ -54,40 +28,94 @@ static int	get_integral_part_len(double nbr)
 	return (len);
 }
 
-char		*ft_dtoa(double nbr, size_t precision)
+static int		add_integral_part(char *result, double int_part, int len)
 {
-	char	*result;
-	int		result_len;
-	int		int_part_len;
-	int		i;
-	double	int_part;
-	double	frac_part;
+	int			i;
+	int			j;
+	double		dbl_tmp;
+	double		res;
+	int			int_tmp;
 
-	int_part_len = get_integral_part_len(nbr);
-	result_len = int_part_len + precision + ((precision != 0) ?
-	1 : 0) + ((nbr < 0) ? 1 : 0);
-	if (!(result = (char*)malloc(sizeof(char) * (result_len + 1))))
-		return (NULL);
 	i = 0;
-	if (nbr < 0)
-		result[i++] = '-';
-	frac_part = ft_modf(nbr, &int_part);
-	i += add_integral_part(&result[i], nbr, int_part_len);
-	if (precision != 0)
+	int_part = ft_isnegative(int_part) ? -int_part : int_part;
+	while (len > 0)
 	{
-		result[i++] = '.';
-		i += add_fractional_part(&result[i], nbr, precision);
+		dbl_tmp = int_part;
+		j = 0;
+		while (++j < len)
+			dbl_tmp /= 10;
+		int_tmp = (int)dbl_tmp;
+		result[i++] = int_tmp + '0';
+		len--;
+		res = ft_dpow(10.0, len);
+		res *= (double)int_tmp;
+		int_part -= res;
 	}
-	result[i] = '\0';
-	return (result);
+	return (i);
 }
 
-int main(void)
+static int		add_fractional_part(char *result, long double frac_part,
+int precision)
 {
-	double var = 454423.3432423;
-	double var2;
-	
-	var = ft_modf(var, &var2);
-	printf("%.10f %.10f\n", var, var2);
-	return (0);
+	int	i;
+	long double long_fraction;
+
+	long_fraction = (frac_part < 0.0) ? -frac_part : frac_part;
+	i = 0;
+	result[i++] = '.';
+	while (precision-- > 0)
+	{
+		long_fraction *= 10;
+		result[i++] = (int)long_fraction + '0';
+		long_fraction -= (int)long_fraction;
+	}
+	return (i);
+}
+
+static long double	round_double(double nbr, size_t precision)
+{
+	size_t		i;
+	long double	div;
+	long double	long_nbr;
+
+	i = 0;
+	div = 1.0;
+	long_nbr = nbr;
+	while (i++ < precision)
+		div *= 10;
+	if (ft_isnegative(nbr))
+		long_nbr = (long_nbr - 0.5 / div);
+	else
+		long_nbr = (long_nbr + 0.5 / div);
+	return (long_nbr);
+}
+
+char			*ft_dtoa(double nbr, size_t precision)
+{
+	char	*result;
+	int		len;
+	double	int_part;
+	double	frac_part;
+//	long double long_nbr;
+
+	if (ft_isnan(nbr))
+		return (ft_strdup("nan"));
+	else if (ft_isposinf(nbr))
+		return (ft_strdup("inf"));
+	else if (ft_isneginf(nbr))
+		return (ft_strdup("-inf"));
+	nbr = round_double(nbr, precision);
+	len = ft_isnegative(nbr) + get_int_part_len(nbr) +
+		((precision != 0) ? 1 : 0) + precision;
+	if (!(result = (char*)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	len = 0;
+	if (nbr < 0.0)
+		result[len++] = '-';
+	frac_part = modf(nbr, &int_part);
+	len += add_integral_part(&result[len], int_part, get_int_part_len(nbr));
+	if (precision != 0)
+		len += add_fractional_part(&result[len], frac_part, precision);
+	result[len] = '\0';
+	return (result);
 }

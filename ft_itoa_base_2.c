@@ -1,23 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_base_2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/18 18:44:42 by skoskine          #+#    #+#             */
+/*   Updated: 2021/02/18 18:45:17 by skoskine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
-#include <stdio.h>
-
-int		ft_abs(int value)
-{
-	return ((value >= 0 ? value : -value));
-}
-
-char	*ft_strcpy(char *dest, char *src)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
-}
+#include "libft.h"
 
 char	*ft_itoa_base(int value, int base)
 {
@@ -46,13 +40,4 @@ char	*ft_itoa_base(int value, int base)
 	if (base < 2 || base > 16 || !(result = (char*)malloc(32 - i + 1)))
 		return (NULL);
 	return (ft_strcpy(result, &temp[i + 1]));
-}
-
-int main(int argc, char **argv)
-{
-	if (argc == 3)
-	{
-		printf("%s\n", ft_itoa_base(atoi(argv[1]), atoi(argv[2])));
-	}
-	return (0);
 }

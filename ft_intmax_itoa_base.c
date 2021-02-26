@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:56:14 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/25 19:59:30 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:06:32 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ char		*ft_intmax_itoa_base(intmax_t n, int base)
 	char	*final_str;
 
 	base_digits = "0123456789abcdef";
-	if (base < 2 || base > 16 || !(digit = ft_strnew(2)))
+	if (base < 2 || base > 16 || !(digit = ft_strnew(3)))
 		return (NULL);
-	if (ft_abs(n) >= 0 && ft_abs(n) < base)
+	if ((n < 0 && n > (intmax_t)(-base)) || (n >= 0 && n < (intmax_t)base))
 	{
 		if (n < 0 && base == 10)
 			digit[0] = '-';
 		return (ft_strncat(digit, &base_digits[ft_abs(n % base)], 1));
 	}
-	digit[0] = base_digits[ft_abs(n % base)];
-	if (!(next_digit = ft_intmax_itoa_base(n / base, base)))
+	digit[0] = base_digits[ft_abs((int)(n % base))];
+	if (!(next_digit = ft_intmax_itoa_base(n / (intmax_t)base, base)))
 	{
 		free(digit);
 		return (NULL);

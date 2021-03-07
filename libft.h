@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/28 14:22:56 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/06 21:12:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@
 # include <string.h>
 # include <inttypes.h>
 
+# define BUFF_SIZE 10
+
 typedef struct		s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_rlist
+{
+	int				fd;
+	char			*remainder;
+	struct s_rlist	*next;
+}					t_rlist;
 
 int					ft_abs(int n);
 int					ft_atoi(const char *str);
@@ -100,5 +109,6 @@ int					ft_isneginf(double nbr);
 double				ft_modf(double value, double *iptr);
 double				ft_fabs(double nbr);
 uintmax_t			ft_uintmax_pow(int base, int power);
+int					get_next_line(const int fd, char **line);
 
 #endif

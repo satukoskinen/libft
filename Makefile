@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/02/28 14:23:08 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/02 19:52:42 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ ft_strsub.c ft_strtrim.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
 ft_lstiter.c ft_lstmap.c ft_lstpushback.c ft_lstsize.c ft_isspace.c \
 ft_atoi_base.c ft_itoa_base.c ft_abs.c ft_power.c ft_dpow.c ft_uintmax_pow.c \
 ft_isnan.c ft_isposinf.c ft_isneginf.c ft_isnegative.c ft_modf.c \
-ft_uintmax_itoa_base.c ft_intmax_itoa_base.c ft_realloc.c ft_fabs.c
+ft_uintmax_itoa_base.c ft_intmax_itoa_base.c ft_realloc.c ft_fabs.c \
+get_next_line.c
 LIBFT_SRCS = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 ft_lstmap.c ft_lstpushback.c ft_lstsize.c ft_bzero.c ft_memalloc.c \
 ft_memmove.c ft_strcat.c ft_strchr.c ft_strcpy.c ft_strdup.c ft_strncat.c \
@@ -32,7 +33,7 @@ ft_strncpy.c ft_strnew.c ft_putendl_fd.c ft_putendl.c ft_putnbr_fd.c \
 ft_putnbr.c ft_putstr_fd.c ft_putstr.c ft_strjoin.c ft_strlcat.c ft_strmap.c \
 ft_strmapi.c ft_strrchr.c ft_strtrim.c ft_strsplit.c ft_strtrim.c ft_atoi.c \
 ft_atoi_base.c ft_itoa.c ft_itoa_base.c ft_uintmax_itoa_base.c \
-ft_intmax_itoa_base.c ft_realloc.c ft_fabs.c
+ft_intmax_itoa_base.c ft_realloc.c ft_fabs.c get_next_line.c
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g

@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/07 18:49:25 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/13 23:35:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/13 23:19:00 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/14 14:11:22 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
-#include <unistd.h>
 
-void	ft_putstr_fd(char const *s, int fd)
+double		ft_sqrt(double value)
 {
-	size_t len;
+	double	sqrt;
 
-	len = ft_strlen(s);
-	write(fd, s, len);
+	sqrt = value * 0.5;
+	while (sqrt * sqrt > value)
+		sqrt *= 0.5;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.25;
+	while (sqrt * sqrt > value)
+		sqrt *= 0.875;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.0625;
+	while (sqrt * sqrt > value)
+		sqrt *= 1 - 0.03125;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.015625;
+	return (sqrt);
 }

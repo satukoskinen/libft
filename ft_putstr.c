@@ -6,10 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 15:13:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/07 19:02:56 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/13 23:36:01 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
 #include <unistd.h>
 

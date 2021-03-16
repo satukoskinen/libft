@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 18:26:06 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/08 15:37:01 by skoskine         ###   ########.fr       */
+/*   Created: 2020/06/07 18:49:25 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/07 19:54:31 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
+#include <unistd.h>
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	size_t i;
+	size_t len;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n && s1[i] == s2[i])
-		i++;
-	if (i < n && s1[i] != s2[i])
-		return (0);
-	return (1);
+	len = ft_strlen(s);
+	write(fd, s, len);
 }

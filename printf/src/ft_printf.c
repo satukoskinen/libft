@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isneginf.c                                      :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/15 22:36:38 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 18:45:36 by skoskine         ###   ########.fr       */
+/*   Created: 2021/01/17 09:35:01 by skoskine          #+#    #+#             */
+/*   Updated: 2021/02/18 15:13:49 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isneginf(double nbr)
+#include "ft_printf.h"
+#include <stdlib.h>
+#include <unistd.h>
+
+int			ft_printf(const char *format, ...)
 {
-	return (nbr == -1.0 / 0 ? 1 : 0);
+	va_list	ap;
+	char	*result;
+	int		ret;
+
+	result = NULL;
+	va_start(ap, format);
+	ret = ft_vasprintf(&result, format, ap);
+	va_end(ap);
+	if (ret != -1)
+		write(1, result, ret);
+	free(result);
+	return (ret);
 }

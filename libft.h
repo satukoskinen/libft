@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/06 21:12:18 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/07 20:04:29 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <inttypes.h>
+# include <stdarg.h>
 
 # define BUFF_SIZE 10
 
@@ -110,5 +111,10 @@ double				ft_modf(double value, double *iptr);
 double				ft_fabs(double nbr);
 uintmax_t			ft_uintmax_pow(int base, int power);
 int					get_next_line(const int fd, char **line);
+
+int					ft_vasprintf(char **ret, const char *format, va_list ap);
+int					ft_asprintf(char **ret, const char *format, ...);
+int					ft_dprintf(int fd, const char *format, ...);
+int					ft_printf(const char *format, ...);
 
 #endif

@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isposinf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 15:13:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/07 19:02:56 by skoskine         ###   ########.fr       */
+/*   Created: 2021/02/15 22:36:22 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/16 21:29:51 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <unistd.h>
-
-void	ft_putstr(char const *s)
+int		ft_isposinf(double nbr)
 {
-	size_t len;
-
-	len = ft_strlen(s);
-	write(1, s, len);
+	return (nbr == 1.0 / 0.0 ? 1 : 0);
 }

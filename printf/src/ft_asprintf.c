@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_asprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 15:31:44 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/25 18:45:46 by skoskine         ###   ########.fr       */
+/*   Created: 2021/02/11 13:24:38 by skoskine          #+#    #+#             */
+/*   Updated: 2021/02/18 21:41:52 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_printf.h"
 
-int		ft_strequ(char const *s1, char const *s2)
+int			ft_asprintf(char **ret, const char *format, ...)
 {
-	size_t i;
+	va_list	ap;
+	int		ret_value;
 
-	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-		i++;
-	if (s1[i] != s2[i])
-		return (0);
-	return (1);
+	va_start(ap, format);
+	*ret = NULL;
+	ret_value = ft_vasprintf(ret, format, ap);
+	va_end(ap);
+	return (ret_value);
 }

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/06 14:55:44 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/25 18:44:57 by skoskine         ###   ########.fr       */
+/*   Created: 2020/06/05 15:13:01 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/07 19:54:23 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
+#include <unistd.h>
 
-void	ft_strclr(char *s)
+void	ft_putstr(char const *s)
 {
-	size_t i;
+	size_t len;
 
-	i = 0;
-	while (s != 0 && s[i] != '\0')
-	{
-		s[i] = '\0';
-		i++;
-	}
+	len = ft_strlen(s);
+	write(1, s, len);
 }

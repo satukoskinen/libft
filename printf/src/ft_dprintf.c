@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/07 18:49:25 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/07 19:03:10 by skoskine         ###   ########.fr       */
+/*   Created: 2021/02/11 13:25:41 by skoskine          #+#    #+#             */
+/*   Updated: 2021/02/18 22:01:13 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "ft_printf.h"
 #include <unistd.h>
+#include <stdlib.h>
 
-void	ft_putstr_fd(char const *s, int fd)
+int			ft_dprintf(int fd, const char *format, ...)
 {
-	size_t len;
+	va_list	ap;
+	char	*result;
+	int		ret;
 
-	len = ft_strlen(s);
-	write(fd, s, len);
+	result = NULL;
+	va_start(ap, format);
+	ret = ft_vasprintf(&result, format, ap);
+	va_end(ap);
+	if (ret != -1)
+	{
+		if (write(fd, result, ret) == -1)
+			ret = -1;
+	}
+	free(result);
+	return (ret);
 }

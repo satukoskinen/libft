@@ -6,7 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/07 20:04:29 by skoskine         ###   ########.fr       */
+=======
+/*   Updated: 2021/03/13 23:34:31 by skoskine         ###   ########.fr       */
+>>>>>>> a88ad2668fd69633651c4948b1c9d92b0a260672
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +115,7 @@ double				ft_modf(double value, double *iptr);
 double				ft_fabs(double nbr);
 uintmax_t			ft_uintmax_pow(int base, int power);
 int					get_next_line(const int fd, char **line);
+double				ft_sqrt(double value);
 
 int					ft_vasprintf(char **ret, const char *format, va_list ap);
 int					ft_asprintf(char **ret, const char *format, ...);

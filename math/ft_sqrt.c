@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isneginf.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/15 22:36:38 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/16 21:35:06 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/13 23:19:00 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/14 14:11:22 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isneginf(double nbr)
+#include "libft.h"
+
+double		ft_sqrt(double value)
 {
-	return (nbr == -1.0 / 0.0 ? 1 : 0);
+	double	sqrt;
+
+	sqrt = value * 0.5;
+	while (sqrt * sqrt > value)
+		sqrt *= 0.5;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.25;
+	while (sqrt * sqrt > value)
+		sqrt *= 0.875;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.0625;
+	while (sqrt * sqrt > value)
+		sqrt *= 1 - 0.03125;
+	while (sqrt * sqrt < value)
+		sqrt *= 1.015625;
+	return (sqrt);
 }

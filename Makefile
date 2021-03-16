@@ -6,14 +6,15 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/16 21:30:35 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/16 21:34:48 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 SRC = $(LIST_SRC) $(MATH_SRC) $(MEM_SRC) $(STR_SRC) $(PUTS_SRC) $(OTHER_SRC) $(PRINTF_SRC)
-LIBFT_SRC = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
+
+LIBFT_SRCS = ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 ft_lstmap.c ft_lstpushback.c ft_lstsize.c ft_bzero.c ft_memalloc.c \
 ft_memmove.c ft_strcat.c ft_strchr.c ft_strcpy.c ft_strdup.c ft_strncat.c \
 ft_strncpy.c ft_strnew.c ft_putendl_fd.c ft_putendl.c ft_putnbr_fd.c \
@@ -46,6 +47,7 @@ MATH_SRC = $(addprefix math/, \
 	ft_uintmax_pow.c \
 	ft_atoi.c \
 	ft_atoi_base.c \
+	ft_sqrt.c
 )
 
 MEM_SRC = $(addprefix mem/, \

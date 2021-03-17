@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/03/16 21:34:48 by skoskine         ###   ########.fr        #
+#    Updated: 2021/03/17 09:01:14 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ MATH_SRC = $(addprefix math/, \
 	ft_uintmax_pow.c \
 	ft_atoi.c \
 	ft_atoi_base.c \
-	ft_sqrt.c
+	ft_sqrt.c \
 )
 
 MEM_SRC = $(addprefix mem/, \

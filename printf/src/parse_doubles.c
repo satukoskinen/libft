@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:39:23 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/28 14:28:29 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/23 14:17:08 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ int			parse_doubles(t_data *specs, va_list *ap, char **result)
 	len += specs->min_field_width;
 	*result = parse_double_result(specs, number, len);
 	free(number);
-	return (len);
+	return ((*result != NULL) ? (int)len : -1);
 }

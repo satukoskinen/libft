@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 09:06:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 20:01:48 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/23 14:17:43 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ char **result)
 	len += specs->min_field_width;
 	*result = parse_int_result(specs, number, len);
 	free(number);
-	return ((*result != NULL) ? len : -1);
+	return ((*result != NULL) ? (int)len : -1);
 }

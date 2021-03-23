@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:39:54 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 19:57:45 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/23 14:16:00 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int				parse_signed_ints(t_data *specs, va_list *ap, char **result)
 	len += specs->min_field_width;
 	*result = parse_int_result(specs, number, len);
 	free(number);
-	return ((*result != NULL) ? len : -1);
+	return ((*result != NULL) ? (int)len : -1);
 }

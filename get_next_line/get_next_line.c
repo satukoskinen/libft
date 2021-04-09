@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 12:30:58 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 14:21:01 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:50:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,33 @@
 ** is encountered, the remainder after that is saved to the remainder list.
 */
 
-int	add_input(int fd, char **input, t_rlist **r_list, char **temp)
+int	add_input(int fd, char **input, t_rlist **r_list, char **line)
 {
 	char	*p;
 	char	*remainder;
 	char	*new;
 
-	remainder = NULL;
 	if (*input[0] == '\0')
 		return (0);
+	remainder = NULL;
 	p = ft_strchr(*input, '\n');
 	if (p != NULL)
 	{
 		*p = '\0';
 		if (*(p + 1) != '\0')
 			remainder = ft_strdup(p + 1);
+		if (*(p + 1) != '\0' && remainder == NULL)
+			return (-1);
 	}
-	new = ft_strjoin(*temp, *input);
+	new = ft_strjoin(*line, *input);
 	if (new == NULL)
 		return (-1);
-	if (*temp != NULL)
-		free(*temp);
-	*temp = new;
+	free(*line);
+	*line = new;
 	if (remainder != NULL)
 		return (update_remainder(fd, &remainder, r_list));
-	else if (p != NULL)
-		return (1);
-	return (0);
+	else
+		return ((p != NULL));
 }
 
 /*

@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 15:04:30 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/30 16:59:11 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:25:17 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (s != 0 && s[i] != '\0')

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 14:59:24 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/30 16:59:04 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:13:10 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s != 0 && s[i] != '\0')

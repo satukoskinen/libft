@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 09:38:46 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:38:48 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:20:13 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*parse_double_result(t_data *specs, char *value_str, size_t len)
 	if (specs->min_field_width > 0 && specs->zero_padding
 		&& !specs->neg_field_width)
 		i += add_padding(specs->min_field_width, '0', &result[i]);
-	i += add_value_str(specs, value_str, &result[i]);
+	i += add_number(specs, value_str, &result[i]);
 	if (specs->precision == 0 && specs->alt_form)
 		result[i++] = '.';
 	if (specs->min_field_width > 0 && specs->neg_field_width)

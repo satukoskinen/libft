@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:02:24 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:58:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:10:49 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,7 @@ int precision)
 
 	if (precision == 0)
 		return (0);
-<<<<<<< HEAD
-	if (frac_part < 0.0)
-		frac_part = -frac_part;
-=======
-	long_fraction = ft_fabsl(frac_part);
->>>>>>> e64654f625eaaf9f76d156940a1f4cb404ab8e54
+	frac_part = ft_fabsl(frac_part);
 	i = 0;
 	while (result[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 08:42:46 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:50:57 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 11:54:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	ft_modf(double value, double *iptr)
 {
 	unsigned long long	double_as_int;
-	unsigned char		sign;
+	char				sign;
 	short				exponent;
 	unsigned long long	significand;
 
@@ -27,7 +27,11 @@ double	ft_modf(double value, double *iptr)
 	else if (ft_isneginf(value))
 		return (-0.0);
 	ft_memcpy(&double_as_int, &value, sizeof(value));
-	sign = (unsigned char)(double_as_int >> 63);
+	sign = (char)(double_as_int >> 63);
+	if (sign == 1)
+		sign = -1;
+	else
+		sign = 1;
 	exponent = (unsigned short)(double_as_int >> 52 & 0x7FF) - 1023;
 	significand = (double_as_int & 0x0000FFFFFFFFFFFFFULL) | (1ULL << 52);
 	if (exponent < 0)
@@ -35,6 +39,6 @@ double	ft_modf(double value, double *iptr)
 	else if (exponent > 52)
 		*iptr = value;
 	else
-		*iptr = sign * (significand >> (52 - exponent));
+		*iptr = (double)sign * (significand >> (52 - exponent));
 	return (value - *iptr);
 }

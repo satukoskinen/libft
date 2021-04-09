@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 09:39:00 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:39:03 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:20:42 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static intmax_t	get_signed_arg(t_data *specs, va_list *ap)
 	return (value);
 }
 
-static int	update_int_specs(t_data *specs, intmax_t value, char *value_str)
+static size_t	update_int_specs(t_data *specs, intmax_t value, char *value_str)
 {
-	int	len;
+	size_t	len;
 
 	if (value == 0)
 		specs->is_zero = 1;

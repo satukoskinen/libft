@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 21:28:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:59:24 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:09:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	parse_conversion(t_data *specs, va_list *ap, char **result)
 	return (ret);
 }
 
-static int	append_to_result(char **result, int ret, int len, char *str)
+static int	append_to_result(char **result, int ret, int len, const char *str)
 {
 	static int	arr_size = 100;
 
@@ -91,7 +91,7 @@ int	parse(const char *format, va_list *ap, char **result)
 			ft_strdel(&conversion);
 		}
 		else
-			ret = append_to_result(result, final_ret, 1, (char *)&format[i]);
+			ret = append_to_result(result, final_ret, 1, &format[i]);
 		if (ret == -1)
 			break ;
 		final_ret += ret;

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/26 10:17:12 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:11:17 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int					ft_isposinf(double nbr);
 int					ft_isneginf(double nbr);
 double				ft_modf(double value, double *iptr);
 double				ft_fabs(double nbr);
+long double			ft_fabsl(long double nbr);
 uintmax_t			ft_uintmax_pow(int base, int power);
 int					get_next_line(const int fd, char **line);
 double				ft_sqrt(double value);

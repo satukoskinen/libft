@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 17:16:18 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/25 18:59:31 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:10:26 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ char	*add_next_str(char const *s, char c)
 char	**ft_strsplit(char const *s, char c)
 {
 	char	**arr;
-	size_t	len;
 	int		j;
 	int		word_count;
 

@@ -6,11 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:40:23 by skoskine          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/03/26 08:50:35 by skoskine         ###   ########.fr       */
-=======
-/*   Updated: 2021/04/09 09:01:18 by skoskine         ###   ########.fr       */
->>>>>>> e64654f625eaaf9f76d156940a1f4cb404ab8e54
+/*   Updated: 2021/04/09 10:49:09 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +41,9 @@ static char	*parse_str_result(t_data *specs, char *str, size_t str_len)
 	return (result);
 }
 
-static int	update_str_specs(t_data *specs, char *str)
+static size_t	update_str_specs(t_data *specs, char *str)
 {
-	int	len;
+	size_t	len;
 
 	if (str == NULL)
 	{
@@ -58,10 +54,9 @@ static int	update_str_specs(t_data *specs, char *str)
 	}
 	else
 	{
-		if (specs->has_precision)
+		len = ft_strlen(str);
+		if (specs->has_precision && specs->precision < len)
 			len = specs->precision;
-		else
-			len = ft_strlen(str);
 	}
 	if (specs->min_field_width > len)
 		specs->min_field_width = specs->min_field_width - len;

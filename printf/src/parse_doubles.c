@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:39:23 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 14:17:08 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:01:27 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	get_int_part_len(char *number)
 	return (len);
 }
 
-char		*parse_double_result(t_data *specs, char *number, size_t len)
+char	*parse_double_result(t_data *specs, char *number, size_t len)
 {
 	char	*result;
 	size_t	i;
 
-	if (!(result = (char*)malloc(sizeof(char) * (len + 1))))
+	if (!(result = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;
 	if (specs->min_field_width > 0 && !specs->zero_padding &&
@@ -51,7 +51,7 @@ char		*parse_double_result(t_data *specs, char *number, size_t len)
 	return (result);
 }
 
-int			get_result_length(t_data *specs, double value, char *number)
+int	get_result_length(t_data *specs, double value, char *number)
 {
 	size_t	len;
 
@@ -85,7 +85,7 @@ static void	reset_special_conversion_specs(double value, t_data *specs)
 	}
 }
 
-int			parse_doubles(t_data *specs, va_list *ap, char **result)
+int	parse_doubles(t_data *specs, va_list *ap, char **result)
 {
 	double		value;
 	char		*number;

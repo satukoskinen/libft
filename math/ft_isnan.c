@@ -6,11 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 22:35:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/15 22:36:09 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:59:03 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isnan(double nbr)
+int	ft_isnan(double nbr)
 {
-	return (nbr != nbr ? 1 : 0);
+	if (nbr != nbr)
+		return (1);
+	else
+		return (0);
 }

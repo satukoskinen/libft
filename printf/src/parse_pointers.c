@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:08:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/05 15:30:18 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:01:37 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include <stdlib.h>
 
-int			parse_pointer(t_data *specs, void *ptr, char **result)
+int	parse_pointer(t_data *specs, void *ptr, char **result)
 {
 	uintmax_t	value;
 	char		*number;

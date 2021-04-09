@@ -6,14 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:02:24 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/28 19:18:54 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:09:52 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int		int_part_len(long double nbr)
+static int	int_part_len(long double nbr)
 {
 	int	len;
 
@@ -26,18 +26,18 @@ static int		int_part_len(long double nbr)
 	return (len);
 }
 
-static int		add_integral_part(char *result, double int_part, int len)
+static int	add_integral_part(char *result, double int_part, int len)
 {
-	int			i;
-	int			j;
-	double		dbl_tmp;
-	double		res;
-	int			int_tmp;
+	int		i;
+	int		j;
+	double	dbl_tmp;
+	double	res;
+	int		int_tmp;
 
 	i = 0;
 	if (ft_isnegative(int_part))
 		result[i++] = '-';
-	int_part = ft_isnegative(int_part) ? -int_part : int_part;
+	int_part = ft_fabs(int_part);
 	while (len > 0)
 	{
 		dbl_tmp = int_part;
@@ -54,7 +54,7 @@ static int		add_integral_part(char *result, double int_part, int len)
 	return (i);
 }
 
-static int		add_fractional_part(char *result, long double frac_part,
+static int	add_fractional_part(char *result, long double frac_part,
 int precision)
 {
 	int			i;
@@ -62,7 +62,7 @@ int precision)
 
 	if (precision == 0)
 		return (0);
-	long_fraction = (frac_part < 0.0) ? -frac_part : frac_part;
+	long_fraction = ft_fabsl(frac_part);
 	i = 0;
 	result[i++] = '.';
 	while (precision-- > 0)
@@ -74,7 +74,7 @@ int precision)
 	return (i);
 }
 
-char			*ft_dtoa(double nbr, size_t precision)
+char	*ft_dtoa(double nbr, size_t precision)
 {
 	char		*result;
 	int			len;
@@ -96,7 +96,7 @@ char			*ft_dtoa(double nbr, size_t precision)
 		int_part += (ft_isnegative(nbr)) ? -1 : 1;
 	len = ft_isnegative(nbr) + int_part_len(int_part) +
 	((precision != 0) ? 1 : 0) + precision;
-	if (!(result = (char*)ft_memalloc(len + 1)))
+	if (!(result = (char *)ft_memalloc(len + 1)))
 		return (NULL);
 	len = add_integral_part(result, int_part, int_part_len(int_part));
 	add_fractional_part(&result[len], frac_part, precision);

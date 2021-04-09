@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 13:26:30 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 21:40:37 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:01:09 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-int			ft_vasprintf(char **ret, const char *format, va_list ap)
+int	ft_vasprintf(char **ret, const char *format, va_list ap)
 {
 	int		ret_value;
 	va_list	ap_copy;

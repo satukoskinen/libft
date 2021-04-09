@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 12:56:17 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/23 14:14:36 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 08:59:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 size_t	add_number(t_data *specs, char *number, char *result)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (specs->is_negative)
@@ -31,7 +31,7 @@ size_t	add_number(t_data *specs, char *number, char *result)
 
 size_t	add_padding(size_t len, char c, char *result)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < len)
@@ -41,7 +41,7 @@ size_t	add_padding(size_t len, char c, char *result)
 
 size_t	add_prefix(t_data *specs, char *result)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (specs->is_negative)

@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 08:42:46 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/31 08:43:22 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:57:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double		ft_modf(double value, double *iptr)
+double	ft_modf(double value, double *iptr)
 {
 	unsigned long long	double_as_int;
 	unsigned char		sign;

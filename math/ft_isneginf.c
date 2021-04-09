@@ -6,11 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 22:36:38 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/16 21:35:06 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:58:27 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isneginf(double nbr)
+int	ft_isneginf(double nbr)
 {
-	return (nbr == -1.0 / 0.0 ? 1 : 0);
+	if (nbr == -1.0 / 0.0)
+		return (1);
+	else
+		return (0);
 }

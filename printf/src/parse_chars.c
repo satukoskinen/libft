@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:40:23 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/18 21:25:56 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:01:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*parse_str_result(t_data *specs, char *str, size_t str_len)
 	char	*result;
 
 	result_len = str_len + specs->min_field_width;
-	if (!(result = (char*)malloc(sizeof(char) * (result_len + 1))))
+	if (!(result = (char *)malloc(sizeof(char) * (result_len + 1))))
 		return (NULL);
 	i = 0;
 	if (specs->min_field_width > 0 && !specs->zero_padding &&
@@ -40,7 +40,7 @@ static char	*parse_str_result(t_data *specs, char *str, size_t str_len)
 	return (result);
 }
 
-int			parse_string(t_data *specs, char *str, char **result)
+int	parse_string(t_data *specs, char *str, char **result)
 {
 	size_t	i;
 
@@ -68,7 +68,7 @@ int			parse_string(t_data *specs, char *str, char **result)
 		return (ft_strlen(*result));
 }
 
-int			parse_char(t_data *specs, char c, char **result)
+int	parse_char(t_data *specs, char c, char **result)
 {
 	specs->min_field_width = (specs->min_field_width > 1) ?
 		(specs->min_field_width - 1) : 0;

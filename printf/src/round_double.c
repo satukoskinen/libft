@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 14:25:12 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/28 19:03:22 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:12:11 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		has_exact_fraction(double nbr, size_t precision, double div)
+static int	has_exact_fraction(double nbr, size_t precision, double div)
 {
 	double		int_part;
 	double		frac_part;
@@ -26,7 +26,7 @@ static int		has_exact_fraction(double nbr, size_t precision, double div)
 		return (0);
 }
 
-int				rounds_half_to_even(double nbr, size_t precision)
+int	rounds_half_to_even(double nbr, size_t precision)
 {
 	double	div;
 
@@ -54,17 +54,21 @@ static double	round_half_to_even(double nbr, double div, size_t precision)
 	frac_part = ft_modf(tmp, &int_part);
 	while (precision-- > 0)
 		frac_part *= 10;
-	if ((uintmax_t)frac_part % 2 == 0)
-		return (nbr < 0.0 ? nbr + 0.5 / div : nbr - 0.5 / div);
+	if ((uintmax_t)frac_part % 2 == 0 && nbr < 0.0)
+		return (nbr + 0.5 / div);
+	else if ((uintmax_t)frac_part % 2 == 0 && nbr >= 0.0)
+		return (nbr - 0.5 / div);
+	else if (nbr < 0.0)
+		return (nbr - 0.5 / div);
 	else
-		return (nbr < 0.0 ? nbr - 0.5 / div : nbr + 0.5 / div);
+		return (nbr + 0.5 / div);
 }
 
-long double		round_double(double nbr, size_t precision)
+long double	round_double(double nbr, size_t precision)
 {
 	size_t		i;
 	double		div;
-	long double long_nbr;
+	long double	long_nbr;
 
 	i = 0;
 	div = 1.0;

@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 23:19:00 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/14 14:11:22 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:57:39 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double		ft_sqrt(double value)
+double	ft_sqrt(double value)
 {
 	double	sqrt;
 

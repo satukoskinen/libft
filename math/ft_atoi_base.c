@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 20:06:05 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/30 09:54:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/08 18:57:12 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_digit_value(char c)
 	return (value);
 }
 
-int			ft_atoi_base(const char *str, int base)
+int	ft_atoi_base(const char *str, int base)
 {
 	size_t	i;
 	int		sign;

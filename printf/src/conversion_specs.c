@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:28:07 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/25 21:50:10 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:58:30 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ int	get_precision(t_data *specs, const char *format)
 	specs->precision = ft_atoi(&format[i]);
 	if (specs->precision == 0)
 		specs->zero_precision = 1;
-	else
-		specs->zero_precision = 0;
 	while (ft_isdigit(format[i]))
 		i++;
 	return (i);

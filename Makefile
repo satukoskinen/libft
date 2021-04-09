@@ -6,13 +6,27 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/04/09 09:35:31 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/09 09:40:28 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SRC = $(LIST_SRC) $(MATH_SRC) $(MEM_SRC) $(STR_SRC) $(PUTS_SRC) $(GNL_SRC) $(PRINTF_SRC)
+OBJ_DIR = obj
+SRC_DIRS = array list math mem other printf/src puts str
+DEP_DIR = .deps
+
+ARR_SRC = $(addprefix array/, \
+	array_add.c \
+	array_del.c \
+	array_get.c \
+	array_indexof.c \
+	array_insert.c \
+	array_is_empty.c \
+	array_new.c \
+	array_remove.c \
+	array_size.c \
+)
 
 LIST_SRC = $(addprefix list/, \
 	ft_lstadd.c \
@@ -80,11 +94,7 @@ STR_SRC = $(addprefix str/, \
 	ft_striter.c \
 	ft_striteri.c \
 	ft_strjoin.c \
-	ft_strjoin.c \
-	ft_strlcat.c \
 	ft_strlen.c \
-	ft_strmap.c \
-	ft_strmapi.c \
 	ft_strncat.c \
 	ft_strncmp.c \
 	ft_strncpy.c \
@@ -124,30 +134,48 @@ PRINTF_SRC = $(addprefix printf/src/, \
 	round_double.c \
 )
 
+SRC = $(ARR_SRC) \
+	$(LIST_SRC) \
+	$(MATH_SRC) \
+	$(MEM_SRC) \
+	$(STR_SRC) \
+	$(PUTS_SRC) \
+	$(OTHER_SRC) \
+	$(PRINTF_SRC)
+
 CC = gcc
-CFLAGS = -c -Wall -Wextra -Werror -g
-CPPFLAGS = -I . -I printf/include -I get_next_line
+CFLAGS = -Wall -Wextra -Werror #-g
+CPPFLAGS = -I . -I printf -I array
+DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c
 
 .PHONY: all re clean fclean
 
 all: $(NAME)
 
-$(NAME): $(SRC:.c=.o) 
-	ar rc $@ $^
+$(NAME): $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+	@echo "Create $@"
+	@ar rc $@ $^
 
-%.o: %.c
-	$(CC) $(CFLAGS) $^ -o $@ $(CPPFLAGS)
+$(OBJ_DIR)/%.o: %.c $(DEP_DIR)/%.d | $(DEP_DIR) $(OBJ_DIR)
+	@echo "Compile $<"
+	@$(COMPILE.c) -o $@ $<
 
-$(SRC): libft.h
+$(DEP_DIR): ; @mkdir -p $(addprefix $@/, $(SRC_DIRS))
 
-$(PRINTF_SRC): printf/include/ft_printf.h
+$(OBJ_DIR): ; @mkdir -p $(addprefix $@/, $(SRC_DIRS))
+
+DEPFILES = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
+$(DEPFILES):
 
 $(GNL_SRC): get_next_line/get_next_line.h
 
 clean:
-	@rm -f $(SRC:.c=.o)
+	@rm -rf $(OBJ_DIR) $(DEP_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+include $(wildcard $(DEPFILES))

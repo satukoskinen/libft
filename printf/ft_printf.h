@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 09:35:48 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/24 22:01:26 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:00:48 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@
 
 typedef struct s_data
 {
-	int			alt_form;
-	int			zero_padding;
-	int			neg_field_width;
-	int			blank_signed;
-	int			plus_signed;
-	size_t		min_field_width;
-	int			has_precision;
-	size_t		precision;
-	int			zero_precision;
-	char		length_modifier[3];
-	char		conversion;
-	int			is_negative;
-	int			is_zero;
-}				t_data;
+	int		alt_form;
+	int		zero_padding;
+	int		neg_field_width;
+	int		blank_signed;
+	int		plus_signed;
+	size_t	min_field_width;
+	int		has_precision;
+	size_t	precision;
+	int		zero_precision;
+	char	length_modifier[3];
+	char	conversion;
+	int		is_negative;
+	int		is_zero;
+}			t_data;
 
 int				ft_vasprintf(char **ret, const char *format, va_list ap);
 int				ft_asprintf(char **ret, const char *format, ...);

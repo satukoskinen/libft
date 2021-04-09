@@ -6,9 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 08:40:49 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:34:50 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:39:37 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isnegative(double nbr)
 {

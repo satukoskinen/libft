@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:02:24 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/26 09:16:38 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:58:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ static int	int_part_len(long double nbr)
 
 static int	add_integral_part(char *result, double int_part, int len)
 {
-	int			i;
-	int			j;
-	double		dbl_tmp;
-	double		res;
-	int			int_tmp;
+	int		i;
+	int		j;
+	double	dbl_tmp;
+	double	res;
+	int		int_tmp;
 
 	i = 0;
 	if (ft_isnegative(int_part))
 		result[i++] = '-';
-	if (ft_isnegative(int_part))
-		int_part = -int_part;
+	int_part = ft_fabs(int_part);
 	while (len > 0)
 	{
 		dbl_tmp = int_part;
@@ -62,8 +61,12 @@ int precision)
 
 	if (precision == 0)
 		return (0);
+<<<<<<< HEAD
 	if (frac_part < 0.0)
 		frac_part = -frac_part;
+=======
+	long_fraction = ft_fabsl(frac_part);
+>>>>>>> e64654f625eaaf9f76d156940a1f4cb404ab8e54
 	i = 0;
 	while (result[i])
 		i++;

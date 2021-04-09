@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 21:28:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/26 09:05:02 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:59:24 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,11 @@ static int	append_to_result(char **result, int ret, int len, char *str)
 int	get_conversion(const char *format, va_list *ap, char **str, int *i)
 {
 	int		ret;
-	t_data	*conversion_specs;
+	t_data	conversion_specs;
 
-	conversion_specs = (t_data *)malloc(sizeof(t_data));
-	if (conversion_specs == NULL)
-		return (-1);
-	ft_memset((void *)conversion_specs, 0, sizeof(t_data));
-	*i += get_conversion_specs(conversion_specs, &format[*i + 1]);
-	ret = parse_conversion(conversion_specs, ap, str);
-	free(conversion_specs);
+	ft_memset((void *)&conversion_specs, 0, sizeof(t_data));
+	*i += get_conversion_specs(&conversion_specs, &format[*i + 1]);
+	ret = parse_conversion(&conversion_specs, ap, str);
 	return (ret);
 }
 

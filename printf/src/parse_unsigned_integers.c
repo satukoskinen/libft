@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 09:06:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:02:02 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:37:18 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,49 @@ static uintmax_t	get_unsigned_arg(t_data *specs, va_list *ap)
 	return (value);
 }
 
+static int	update_uint_specs(t_data *specs, uintmax_t value, char *value_str)
+{
+	int	len;
+
+	if (value == 0)
+		specs->is_zero = 1;
+	if (specs->has_precision)
+		specs->zero_padding = 0;
+	len = ft_strlen(value_str);
+	if (specs->is_zero && specs->zero_precision)
+		len = 0;
+	if (specs->precision > len)
+		specs->precision = specs->precision - len;
+	else
+		specs->precision = 0;
+	if (specs->alt_form && specs->conversion == 'o' && specs->precision == 0
+		&& (!specs->is_zero || specs->zero_precision))
+		specs->precision++;
+	len += specs->precision;
+	if (specs->alt_form && ft_strchr("xX", specs->conversion)
+		&& !specs->is_zero)
+		len += 2;
+	if (specs->min_field_width > len)
+		specs->min_field_width = specs->min_field_width - len;
+	else
+		specs->min_field_width = 0;
+	return (len + specs->min_field_width);
+}
+
 int	parse_unsigned_ints(t_data *specs, va_list *ap, char **result)
 {
 	uintmax_t	value;
-	char		*number;
+	char		*value_str;
 	size_t		len;
 
 	value = get_unsigned_arg(specs, ap);
-	if (!(number = get_value_string(specs, value)))
+	value_str = get_value_string(specs, value);
+	if (value_str == NULL)
 		return (-1);
-	specs->is_zero = (value == 0) ? 1 : 0;
-	if (specs->has_precision)
-		specs->zero_padding = 0;
-	len = (specs->is_zero && specs->zero_precision) ? 0 : ft_strlen(number);
-	specs->precision = (specs->precision > len) ? (specs->precision - len) : 0;
-	if (specs->alt_form && specs->conversion == 'o' && specs->precision == 0 &&
-		(!specs->is_zero || specs->zero_precision))
-		specs->precision++;
-	len += specs->precision;
-	if (specs->alt_form && ft_strchr("xX", specs->conversion) &&
-		!specs->is_zero)
-		len += 2;
-	specs->min_field_width = (specs->min_field_width > len) ?
-		(specs->min_field_width - len) : 0;
-	len += specs->min_field_width;
-	*result = parse_int_result(specs, number, len);
-	free(number);
-	return ((*result != NULL) ? (int)len : -1);
+	len = update_uint_specs(specs, value, value_str);
+	*result = parse_int_result(specs, value_str, len);
+	free(value_str);
+	if (*result == NULL)
+		return (-1);
+	return (len);
 }

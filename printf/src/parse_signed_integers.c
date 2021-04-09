@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 14:39:54 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:01:45 by skoskine         ###   ########.fr       */
+/*   Created: 2021/04/09 09:39:00 by skoskine          #+#    #+#             */
+/*   Updated: 2021/04/09 09:39:03 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,48 @@ static intmax_t	get_signed_arg(t_data *specs, va_list *ap)
 	return (value);
 }
 
-int	parse_signed_ints(t_data *specs, va_list *ap, char **result)
+static int	update_int_specs(t_data *specs, intmax_t value, char *value_str)
 {
-	intmax_t	value;
-	char		*number;
-	size_t		len;
+	int	len;
 
-	value = get_signed_arg(specs, ap);
-	if (!(number = ft_intmax_itoa_base(value, 10)))
-		return (-1);
-	specs->is_zero = (value == 0) ? 1 : 0;
-	specs->is_negative = (value < 0) ? 1 : 0;
-	len = (specs->is_zero && specs->zero_precision) ? 0 : ft_strlen(number);
+	if (value == 0)
+		specs->is_zero = 1;
+	if (value < 0)
+		specs->is_negative = 1;
+	len = ft_strlen(value_str);
+	if (specs->is_zero && specs->zero_precision)
+		len = 0;
 	if (specs->has_precision)
 		specs->zero_padding = 0;
-	specs->precision = (specs->precision > len - specs->is_negative) ?
-		(specs->precision - len + specs->is_negative) : 0;
+	if (specs->precision > len - specs->is_negative)
+		specs->precision = specs->precision - len + specs->is_negative;
+	else
+		specs->precision = 0;
 	len += specs->precision;
 	if (value >= 0 && (specs->plus_signed || specs->blank_signed))
 		len += 1;
-	specs->min_field_width = (specs->min_field_width > len) ?
-		(specs->min_field_width - len) : 0;
+	if (specs->min_field_width > len)
+		specs->min_field_width = specs->min_field_width - len;
+	else
+		specs->min_field_width = 0;
 	len += specs->min_field_width;
-	*result = parse_int_result(specs, number, len);
-	free(number);
-	return ((*result != NULL) ? (int)len : -1);
+	return (len);
+}
+
+int	parse_signed_ints(t_data *specs, va_list *ap, char **result)
+{
+	intmax_t	value;
+	char		*value_str;
+	size_t		len;
+
+	value = get_signed_arg(specs, ap);
+	value_str = ft_intmax_itoa_base(value, 10);
+	if (value_str == NULL)
+		return (-1);
+	len = update_int_specs(specs, value, value_str);
+	*result = parse_int_result(specs, value_str, len);
+	free(value_str);
+	if (*result == NULL)
+		return (-1);
+	return (len);
 }

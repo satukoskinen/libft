@@ -6,7 +6,7 @@
 #    By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/05 13:58:06 by skoskine          #+#    #+#              #
-#    Updated: 2021/04/09 09:17:28 by skoskine         ###   ########.fr        #
+#    Updated: 2021/04/09 09:40:28 by skoskine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,6 @@ MEM_SRC = $(addprefix mem/, \
 PUTS_SRC = $(addprefix puts/, \
 	ft_putchar_fd.c \
 	ft_putchar.c \
-	ft_putendl_fd.c \
-	ft_putendl.c \
 	ft_putnbr_fd.c \
 	ft_putnbr.c \
 	ft_putstr_fd.c \
@@ -115,7 +113,7 @@ STR_SRC = $(addprefix str/, \
 	ft_itoa.c \
 )
 
-OTHER_SRC = $(addprefix other/, \
+GNL_SRC = $(addprefix get_next_line/, \
 	get_next_line.c \
 )
 
@@ -169,6 +167,8 @@ $(OBJ_DIR): ; @mkdir -p $(addprefix $@/, $(SRC_DIRS))
 
 DEPFILES = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
 $(DEPFILES):
+
+$(GNL_SRC): get_next_line/get_next_line.h
 
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)

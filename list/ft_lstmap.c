@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 17:08:01 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/28 21:35:47 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:11:41 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	ft_free_list(t_list **new)
 	*new = NULL;
 }
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *new;
+	t_list	*new;
 
 	new = f(lst);
 	if (new == NULL)

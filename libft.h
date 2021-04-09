@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/16 21:35:58 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:17:12 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,12 @@
 
 # define BUFF_SIZE 10
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_rlist
-{
-	int				fd;
-	char			*remainder;
-	struct s_rlist	*next;
-}					t_rlist;
 
 int					ft_abs(int n);
 int					ft_atoi(const char *str);

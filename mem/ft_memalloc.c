@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/06 13:32:51 by skoskine          #+#    #+#             */
-/*   Updated: 2020/07/10 17:51:55 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:59:35 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 void	*ft_memalloc(size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
-	if (size == 0 || !(ptr = malloc(size)))
+	if (size == 0)
+		return (NULL);
+	ptr = malloc(size);
+	if (ptr == NULL)
 		return (NULL);
 	ft_memset(ptr, 0, size);
 	return (ptr);

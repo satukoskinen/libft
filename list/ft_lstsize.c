@@ -6,15 +6,15 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 19:37:49 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/29 19:39:31 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:12:09 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lstsize(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (lst != NULL)

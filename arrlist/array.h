@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   array.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/07 18:51:00 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/28 14:35:44 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/17 18:35:03 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/24 22:08:50 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef ARRAY_H
+# define ARRAY_H
 
-void	ft_putendl_fd(char const *s, int fd)
+# include "string.h"
+
+typedef struct s_array
 {
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
-}
+	void		**data;
+	size_t		elem_size;
+	size_t		capacity;
+	size_t		size;
+}				t_array;
+
+#endif

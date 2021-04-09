@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 09:35:48 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/07 20:11:53 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 22:01:26 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stddef.h>
 
-typedef	struct	s_data
+typedef struct s_data
 {
 	int			alt_form;
 	int			zero_padding;
@@ -50,9 +50,9 @@ int				parse_signed_ints(t_data *specs, va_list *ap, char **result);
 int				parse_doubles(t_data *specs, va_list *ap, char **result);
 int				parse_double(t_data *specs, double value, char **result);
 int				parse_long_double(t_data *specs, long double value,
-				char **result);
+					char **result);
 char			*parse_int_result(t_data *specs, char *number,
-				size_t result_len);
+					size_t result_len);
 size_t			add_padding(size_t len, char c, char *result);
 size_t			add_prefix(t_data *specs, char *result);
 size_t			add_number(t_data *specs, char *number, char *result);

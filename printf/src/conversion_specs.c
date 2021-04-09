@@ -6,14 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 21:28:07 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/19 16:36:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:50:10 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-int		get_length_modifier(t_data *specs, const char *format)
+int	get_length_modifier(t_data *specs, const char *format)
 {
 	int		i;
 	char	modifier;
@@ -32,20 +32,23 @@ int		get_length_modifier(t_data *specs, const char *format)
 	return (i);
 }
 
-int		get_precision(t_data *specs, const char *format)
+int	get_precision(t_data *specs, const char *format)
 {
 	int	i;
 
 	i = 1;
 	specs->has_precision = 1;
 	specs->precision = ft_atoi(&format[i]);
-	specs->zero_precision = specs->precision == 0 ? 1 : 0;
+	if (specs->precision == 0)
+		specs->zero_precision = 1;
+	else
+		specs->zero_precision = 0;
 	while (ft_isdigit(format[i]))
 		i++;
 	return (i);
 }
 
-int		get_min_field_width(t_data *specs, const char *format)
+int	get_min_field_width(t_data *specs, const char *format)
 {
 	int	i;
 
@@ -56,13 +59,13 @@ int		get_min_field_width(t_data *specs, const char *format)
 	return (i);
 }
 
-int		get_flags(t_data *specs, const char *format)
+int	get_flags(t_data *specs, const char *format)
 {
 	int	i;
 
 	i = 0;
 	while (format[i] == '#' || format[i] == '0' || format[i] == ' '
-			|| format[i] == '-' || format[i] == '+')
+		|| format[i] == '-' || format[i] == '+')
 	{
 		if (format[i] == '#')
 			specs->alt_form = 1;
@@ -79,9 +82,9 @@ int		get_flags(t_data *specs, const char *format)
 	return (i);
 }
 
-int		get_conversion_specs(t_data *specs, const char *format)
+int	get_conversion_specs(t_data *specs, const char *format)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	i += get_flags(specs, format);

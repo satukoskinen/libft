@@ -6,11 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 09:37:20 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/28 17:48:58 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:01:05 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_abs(int n)
+int	ft_abs(int n)
 {
-	return ((n < 0) ? -n : n);
+	if (n < 0)
+		return (-n);
+	else
+		return (n);
 }

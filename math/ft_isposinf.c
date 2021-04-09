@@ -6,11 +6,14 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 22:36:22 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/16 21:35:03 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:00:37 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isposinf(double nbr)
+int	ft_isposinf(double nbr)
 {
-	return (nbr == 1.0 / 0.0 ? 1 : 0);
+	if (nbr == 1.0 / 0.0)
+		return (1);
+	else
+		return (0);
 }

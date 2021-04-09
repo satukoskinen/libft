@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 18:52:09 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/28 14:35:52 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:08:14 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long int ln;
+	long int	ln;
 
 	ln = n;
 	if (ln < 0)

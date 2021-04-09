@@ -6,13 +6,13 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 09:15:48 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/15 22:19:17 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:04:13 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 double	ft_dpow(double base, int power)
 {
-	double result;
+	double	result;
 
 	result = 1.0;
 	while (power > 0)

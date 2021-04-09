@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 15:13:01 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/16 21:35:17 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 19:08:09 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_putstr(char const *s)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(s);
 	write(1, s, len);

@@ -16,7 +16,7 @@ int     striter_test(void)
     str1 = strcpy(str1, "abcdefghi");
     str2 = strcpy(str2, "bcdefghij");
 
-    void (*f)(char*) = ft_iter;
+    void (*f)(char *) = ft_iter;
 
     ft_striter(str1, f);
 

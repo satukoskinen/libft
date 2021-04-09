@@ -1,3 +1,6 @@
 libft.a
 *.o
 *.dSYM
+.deps
+.vscode
+obj

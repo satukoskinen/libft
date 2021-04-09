@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 15:54:05 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/08 18:57:15 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:00:06 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int			i;
-	int			sign;
-	int			result;
+	int	i;
+	int	sign;
+	int	result;
 
 	i = 0;
 	sign = 1;

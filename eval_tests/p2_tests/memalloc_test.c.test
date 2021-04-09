@@ -12,12 +12,12 @@ int memalloc_test(void)
 
 	while (i < 40)
 	{
-		if (((char*)mem1)[i] != ((char*)mem2)[i])
+		if (((char *)mem1)[i] != ((char *)mem2)[i])
 		{
 			printf("ERROR: mem1[i] != mem2[i]\n");
 			break;
 		}
-		if (((char*)mem1)[i] != mem3[i])
+		if (((char *)mem1)[i] != mem3[i])
 		{
 			printf("\nERROR: mem1[i] != mem2[i]\n");
 			break;

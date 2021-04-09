@@ -6,7 +6,11 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 14:40:23 by skoskine          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2021/03/26 08:50:35 by skoskine         ###   ########.fr       */
+=======
 /*   Updated: 2021/04/09 09:01:18 by skoskine         ###   ########.fr       */
+>>>>>>> e64654f625eaaf9f76d156940a1f4cb404ab8e54
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +26,15 @@ static char	*parse_str_result(t_data *specs, char *str, size_t str_len)
 	char	*result;
 
 	result_len = str_len + specs->min_field_width;
-	if (!(result = (char *)malloc(sizeof(char) * (result_len + 1))))
+	result = (char *)malloc(sizeof(char) * (result_len + 1));
+	if (result == NULL)
 		return (NULL);
 	i = 0;
-	if (specs->min_field_width > 0 && !specs->zero_padding &&
-		!specs->neg_field_width)
+	if (specs->min_field_width > 0 && !specs->zero_padding
+		&& !specs->neg_field_width)
 		i += add_padding(specs->min_field_width, ' ', &result[i]);
-	else if (specs->min_field_width > 0 && specs->zero_padding &&
-		!specs->neg_field_width)
+	else if (specs->min_field_width > 0 && specs->zero_padding
+		&& !specs->neg_field_width)
 		i += add_padding(specs->min_field_width, '0', &result[i]);
 	j = 0;
 	while (j < str_len)
@@ -40,28 +45,40 @@ static char	*parse_str_result(t_data *specs, char *str, size_t str_len)
 	return (result);
 }
 
-int	parse_string(t_data *specs, char *str, char **result)
+static int	update_str_specs(t_data *specs, char *str)
 {
-	size_t	i;
+	int	len;
 
 	if (str == NULL)
 	{
-		i = (specs->has_precision && specs->precision < 6) ?
-		specs->precision : 6;
-		specs->min_field_width = (specs->min_field_width > i) ?
-			(specs->min_field_width - i) : 0;
-		*result = parse_str_result(specs, "(null)", i);
+		if (specs->has_precision && specs->precision < 6)
+			len = specs->precision;
+		else
+			len = 6;
 	}
 	else
 	{
-		i = 0;
-		while ((!specs->has_precision || i < specs->precision)
-		&& str[i] != '\0')
-			i++;
-		specs->min_field_width = (specs->min_field_width > i) ?
-			(specs->min_field_width - i) : 0;
-		*result = parse_str_result(specs, str, i);
+		if (specs->has_precision)
+			len = specs->precision;
+		else
+			len = ft_strlen(str);
 	}
+	if (specs->min_field_width > len)
+		specs->min_field_width = specs->min_field_width - len;
+	else
+		specs->min_field_width = 0;
+	return (len);
+}
+
+int	parse_string(t_data *specs, char *str, char **result)
+{
+	size_t	str_len;
+
+	str_len = update_str_specs(specs, str);
+	if (str == NULL)
+		*result = parse_str_result(specs, "(null)", str_len);
+	else
+		*result = parse_str_result(specs, str, str_len);
 	if (*result == NULL)
 		return (-1);
 	else
@@ -70,9 +87,10 @@ int	parse_string(t_data *specs, char *str, char **result)
 
 int	parse_char(t_data *specs, char c, char **result)
 {
-	specs->min_field_width = (specs->min_field_width > 1) ?
-		(specs->min_field_width - 1) : 0;
-	if (!(*result = parse_str_result(specs, &c, 1)))
+	if (specs->min_field_width >= 1)
+		specs->min_field_width--;
+	*result = parse_str_result(specs, &c, 1);
+	if (*result == NULL)
 		return (-1);
 	return (specs->min_field_width + 1);
 }

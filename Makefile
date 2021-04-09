@@ -158,8 +158,6 @@ $(OBJ_DIR): ; @mkdir -p $(addprefix $@/, $(SRC_DIRS))
 DEPFILES = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
 $(DEPFILES):
 
-$(GNL_SRC): get_next_line/get_next_line.h
-
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)
 

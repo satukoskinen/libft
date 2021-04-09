@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   array_is_empty.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 12:34:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/27 22:27:45 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/28 12:26:44 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "array.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	array_is_empty(t_array *array)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	if (array->size == 0)
+		return (1);
+	return (0);
 }

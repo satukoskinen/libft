@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 09:25:16 by skoskine          #+#    #+#             */
-/*   Updated: 2020/07/10 17:51:45 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:51:01 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		while (len > 0)
 		{
-			((char*)dst)[len - 1] = ((char*)src)[len - 1];
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
 			len--;
 		}
 	}

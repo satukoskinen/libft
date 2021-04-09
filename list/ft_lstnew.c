@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 09:20:27 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/28 14:40:42 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 09:48:59 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list *new;
+	t_list	*new;
 
-	if (!(new = (t_list*)malloc(sizeof(*new))))
+	new = (t_list *)malloc(sizeof(*new));
+	if (new == NULL)
 		return (NULL);
 	if (content == NULL || content_size == 0)
 	{
@@ -26,7 +27,8 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(new->content = (void*)malloc(content_size)))
+		new->content = (void *)malloc(content_size);
+		if (new->content == NULL)
 		{
 			free(new);
 			return (NULL);

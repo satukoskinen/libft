@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   array_get.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 12:34:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/28 08:55:13 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/28 12:26:37 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "array.h"
+#include <stdlib.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*array_get(t_array *array, size_t i)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	if (i >= array->capacity)
+		return (NULL);
+	return (array->data + array->elem_size * i);
 }

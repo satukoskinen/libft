@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   array_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 12:34:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/27 22:20:21 by skoskine          #+#    #+#             */
+/*   Updated: 2021/04/09 09:47:13 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "array.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+t_array	*array_new(size_t capacity, size_t elem_size)
 {
-	size_t	i;
+	t_array	*new;
 
-	i = 0;
-	while (i < len)
+	new = (t_array *)malloc(sizeof(t_array));
+	if (new == NULL)
+		return (NULL);
+	new->data = malloc(elem_size * capacity);
+	if (new->data == NULL)
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
+		free(new);
+		return (NULL);
 	}
-	return (b);
+	new->capacity = capacity;
+	new->elem_size = elem_size;
+	new->size = 0;
+	return (new);
 }

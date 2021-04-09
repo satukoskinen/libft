@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   array_remove.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 12:34:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/27 22:29:07 by skoskine          #+#    #+#             */
+/*   Updated: 2021/04/09 09:46:24 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "array.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	array_remove(t_array *array, size_t i)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < len)
+	if (i >= array->size)
+		return ;
+	if (i == array->size - 1)
+		array->size--;
+	else
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
-		i++;
+		ft_memcpy(array->data + i * array->elem_size,
+			array->data + (i + 1) * array->elem_size,
+			(array->size - i - 1) * array->elem_size);
+		array->size--;
 	}
-	return (b);
 }

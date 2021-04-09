@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   array_indexof.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/05 12:34:55 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:32 by skoskine         ###   ########.fr       */
+/*   Created: 2021/03/28 08:58:01 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/28 12:26:39 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "array.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	array_indexof(t_array *array, void *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < len)
+	while (i < array->size)
 	{
-		((unsigned char *)b)[i] = (unsigned char)c;
+		if (!ft_memcmp(array_get(array, i), data, array->elem_size))
+			return (i);
 		i++;
 	}
-	return (b);
+	return (-1);
 }

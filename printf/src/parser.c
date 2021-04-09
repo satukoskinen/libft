@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 21:28:28 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 10:09:59 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:07:19 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static int	append_to_result(char **result, int ret, int len, const char *str)
 {
 	static int	arr_size = 100;
 
-	if (len == -1)
-		return (-1);
 	if (*result == NULL)
 	{
 		*result = ft_memalloc(arr_size + 1);
@@ -60,46 +58,61 @@ static int	append_to_result(char **result, int ret, int len, const char *str)
 	return (len);
 }
 
-int	get_conversion(const char *format, va_list *ap, char **str, int *i)
+int	parse_next_item(const char *format, va_list *ap, char **result, int len)
 {
-	int		ret;
 	t_data	conversion_specs;
+	char	*conversion;
+	int		ret;
 
-	ft_memset((void *)&conversion_specs, 0, sizeof(t_data));
-	*i += get_conversion_specs(&conversion_specs, &format[*i + 1]);
-	ret = parse_conversion(&conversion_specs, ap, str);
+	conversion = NULL;
+	if (*format == '%')
+	{
+		ft_memset((void *)&conversion_specs, 0, sizeof(t_data));
+		get_conversion_specs(&conversion_specs, format + 1);
+		ret = parse_conversion(&conversion_specs, ap, &conversion);
+		if (ret == -1)
+			return (-1);
+		ret = append_to_result(result, len, ret, conversion);
+		ft_strdel(&conversion);
+	}
+	else
+		ret = append_to_result(result, len, 1, format);
 	return (ret);
+}
+
+int	format_item_length(const char *format)
+{
+	t_data	conversion_specs;
+	int		i;
+
+	i = 0;
+	if (format[i] == '%')
+		i = get_conversion_specs(&conversion_specs, &format[i + 1]) + 1;
+	else
+		i = 1;
+	return (i);
 }
 
 int	parse(const char *format, va_list *ap, char **result)
 {
 	int		i;
-	int		final_ret;
+	int		len;
 	int		ret;
-	char	*conversion;
 
 	i = 0;
-	final_ret = 0;
+	len = 0;
 	ret = 0;
-	conversion = NULL;
 	while (format[i])
 	{
-		if (format[i] == '%')
-		{
-			ret = get_conversion(format, ap, &conversion, &i);
-			ret = append_to_result(result, final_ret, ret, conversion);
-			ft_strdel(&conversion);
-		}
-		else
-			ret = append_to_result(result, final_ret, 1, &format[i]);
+		ret = parse_next_item(&format[i], ap, result, len);
 		if (ret == -1)
 			break ;
-		final_ret += ret;
-		i++;
+		len += ret;
+		i += format_item_length(&format[i]);
 	}
 	if (ret == -1)
 		return (-1);
 	if (i == 0)
 		*result = ft_strdup("");
-	return (final_ret);
+	return (len);
 }

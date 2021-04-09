@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 12:30:58 by skoskine          #+#    #+#             */
-/*   Updated: 2021/03/26 10:36:15 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:50:34 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 ** is encountered, the remainder after that is saved to the remainder list.
 */
 
-static int	add_input(int fd, char **input, t_rlist **r_list, char **temp)
+int	add_input(int fd, char **input, t_rlist **r_list, char **line)
 {
 	char	*p;
 	char	*remainder;
 	char	*new;
 
+	if (*input[0] == '\0')
+		return (0);
 	remainder = NULL;
 	p = ft_strchr(*input, '\n');
 	if (p != NULL)
@@ -33,16 +35,45 @@ static int	add_input(int fd, char **input, t_rlist **r_list, char **temp)
 		*p = '\0';
 		if (*(p + 1) != '\0')
 			remainder = ft_strdup(p + 1);
+		if (*(p + 1) != '\0' && remainder == NULL)
+			return (-1);
 	}
-	new = ft_strjoin(*temp, *input);
-	if (*temp != NULL)
-		free(*temp);
-	*temp = new;
+	new = ft_strjoin(*line, *input);
+	if (new == NULL)
+		return (-1);
+	free(*line);
+	*line = new;
 	if (remainder != NULL)
 		return (update_remainder(fd, &remainder, r_list));
-	else if (p != NULL)
-		return (1);
-	return (0);
+	else
+		return ((p != NULL));
+}
+
+/*
+**
+*/
+
+static int	check_remainder(t_rlist *r_list, int fd, char **line, int *ret)
+{
+	*ret = 0;
+	if (r_list != NULL)
+		*ret = read_remainder(fd, r_list, line);
+	return (*ret);
+}
+
+/*
+**
+*/
+
+static int	read_to_buf(int fd, char *buf)
+{
+	int	bytes_read;
+
+	bytes_read = read(fd, buf, BUFF_SIZE);
+	if (bytes_read == -1)
+		return (-1);
+	buf[bytes_read] = '\0';
+	return (bytes_read);
 }
 
 /*
@@ -54,30 +85,29 @@ static int	add_input(int fd, char **input, t_rlist **r_list, char **temp)
 
 int	get_next_line(const int fd, char **line)
 {
+	int				ret;
 	int				bytes_read;
-	char			*temp;
 	char			buf[BUFF_SIZE + 1];
 	static t_rlist	*r_list;
 
-	temp = NULL;
 	if (fd < 0 || line == NULL)
 		return (-1);
-	if (r_list != NULL && read_remainder(fd, r_list, &temp, line) == 1)
-		return (1);
+	*line = NULL;
+	if (check_remainder(r_list, fd, line, &ret) != 0)
+		return (ret);
 	bytes_read = 1;
-	while (bytes_read != 0)
+	while (bytes_read != 0 && ret == 0)
 	{
-		bytes_read = read(fd, buf, BUFF_SIZE);
+		bytes_read = read_to_buf(fd, (char *)buf);
 		if (bytes_read == -1)
 			return (-1);
-		buf[bytes_read] = '\0';
-		if (add_input(fd, &buf, &r_list, &temp) == 1)
-			break ;
+		ret = add_input(fd, (char **)&buf, &r_list, line);
 	}
 	if (bytes_read == 0)
 		delete_remainder(fd, &r_list);
-	*line = temp;
-	if (temp == NULL)
+	if (bytes_read == 0 && line == NULL)
 		return (0);
+	else if (ret == -1)
+		return (-1);
 	return (1);
 }

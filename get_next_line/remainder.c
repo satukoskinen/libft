@@ -37,6 +37,23 @@ void	delete_remainder(int fd, t_rlist **r_list)
 }
 
 /*
+**
+*/
+
+static t_rlist	*create_node(int fd, char **input)
+{
+	t_rlist	*p;
+
+	p = (t_rlist *)malloc(sizeof(t_rlist));
+	if (p == NULL)
+		return (NULL);
+	p->fd = fd;
+	p->remainder = *input;
+	p->next = NULL;
+	return (p);
+}
+
+/*
 ** Saves the given input to the remainder node corresponding to fd.
 ** If no node exists for the fd (or no list has yet been created),
 ** that is created and either added to end of existing list or saved
@@ -60,12 +77,9 @@ int	update_remainder(int fd, char **input, t_rlist **r_list)
 		prev = p;
 		p = p->next;
 	}
-	p = (t_rlist *)malloc(sizeof(t_rlist));
+	p = create_node(fd, input);
 	if (p == NULL)
 		return (-1);
-	p->fd = fd;
-	p->remainder = *input;
-	p->next = NULL;
 	if (prev != NULL)
 		prev->next = p;
 	else
@@ -79,7 +93,7 @@ int	update_remainder(int fd, char **input, t_rlist **r_list)
 ** to **line.
 */
 
-int	read_remainder(int fd, t_rlist *r_list, char **temp, char **line)
+int	read_remainder(int fd, t_rlist *r_list, char **temp)
 {
 	t_rlist	*p;
 	int		ret;
@@ -91,10 +105,6 @@ int	read_remainder(int fd, t_rlist *r_list, char **temp, char **line)
 		{
 			ret = add_input(fd, &(p->remainder), &r_list, temp);
 			ft_strdel(&(p->remainder));
-			if (ret == 1)
-			{
-				*line = *temp;
-			}
 			return (ret);
 		}
 		p = p->next;

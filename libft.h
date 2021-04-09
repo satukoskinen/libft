@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 10:11:17 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/09 14:28:00 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_list
 
 int					ft_abs(int n);
 int					ft_atoi(const char *str);
+long long int		ft_atoll(const char *str);
 int					ft_atoi_base(const char *str, int base);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);

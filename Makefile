@@ -1,7 +1,7 @@
 NAME = libft.a
 
 OBJ_DIR = obj
-SRC_DIRS = array list math mem other printf/src puts str
+SRC_DIRS = array list math mem get_next_line printf/src puts str
 DEP_DIR = .deps
 
 ARR_SRC = $(addprefix array/, \
@@ -39,6 +39,7 @@ MATH_SRC = $(addprefix math/, \
 	ft_power.c \
 	ft_uintmax_pow.c \
 	ft_atoi.c \
+	ft_atoll.c \
 	ft_atoi_base.c \
 	ft_sqrt.c \
 )
@@ -103,6 +104,7 @@ STR_SRC = $(addprefix str/, \
 
 GNL_SRC = $(addprefix get_next_line/, \
 	get_next_line.c \
+	remainder.c \
 )
 
 PRINTF_SRC = $(addprefix printf/src/, \
@@ -128,12 +130,12 @@ SRC = $(ARR_SRC) \
 	$(MEM_SRC) \
 	$(STR_SRC) \
 	$(PUTS_SRC) \
-	$(OTHER_SRC) \
+	$(GNL_SRC) \
 	$(PRINTF_SRC)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-g
-CPPFLAGS = -I . -I printf -I array
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CPPFLAGS = -I . -I printf -I array -I get_next_line
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c
 

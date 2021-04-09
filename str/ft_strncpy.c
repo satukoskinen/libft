@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 12:54:27 by skoskine          #+#    #+#             */
-/*   Updated: 2020/07/10 17:50:39 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:12:26 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t src_len;
+	size_t	src_len;
 
 	src_len = ft_strlen(src);
 	if (src_len >= len)

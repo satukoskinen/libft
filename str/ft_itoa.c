@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/07 18:10:54 by skoskine          #+#    #+#             */
-/*   Updated: 2021/01/25 16:25:04 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:44:10 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	number_length(int nbr)
 {
-	int length;
+	int	length;
 
 	length = 1;
 	if (nbr < 0)
@@ -28,7 +28,7 @@ static int	number_length(int nbr)
 	return (length);
 }
 
-char		*ft_itoa(int nbr)
+char	*ft_itoa(int nbr)
 {
 	char	*str;
 	int		i;
@@ -37,12 +37,12 @@ char		*ft_itoa(int nbr)
 
 	i = 0;
 	length = number_length(nbr);
-	if (!(str = malloc(sizeof(*str) * (length + 1))))
+	str = malloc(sizeof(*str) * (length + 1));
+	if (str == NULL)
 		return (NULL);
 	if (nbr < 0)
 	{
-		str[i] = '-';
-		i++;
+		str[i++] = '-';
 		length--;
 	}
 	while (length > 0)

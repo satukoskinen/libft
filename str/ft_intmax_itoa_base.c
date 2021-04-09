@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:56:14 by skoskine          #+#    #+#             */
-/*   Updated: 2021/02/13 09:06:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:38:51 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,37 @@
 #include <inttypes.h>
 #include "libft.h"
 
-char		*ft_intmax_itoa_base(intmax_t n, int base)
+static int	is_negative(intmax_t value)
 {
-	char	*base_digits;
-	char	*digit;
-	char	*next_digit;
-	char	*final_str;
+	if (value < 0)
+		return (1);
+	else
+		return (0);
+}
 
-	base_digits = "0123456789abcdef";
-	if (base < 2 || base > 16 || !(digit = ft_strnew(3)))
+char	*ft_intmax_itoa_base(intmax_t value, int base)
+{
+	char	*result;
+	char	*digits;
+	char	temp[64 + 1];
+	int		i;
+
+	if (base < 2 || base > 16)
 		return (NULL);
-	if ((n < 0 && n > (intmax_t)(-base)) || (n >= 0 && n < (intmax_t)base))
+	digits = "0123456789ABCDEF";
+	i = 64;
+	temp[i--] = '\0';
+	if (value == 0)
+		temp[i--] = '0';
+	while (value != 0)
 	{
-		if (n < 0 && base == 10)
-			digit[0] = '-';
-		return (ft_strncat(digit, &base_digits[ft_abs(n % base)], 1));
+		temp[i--] = digits[ft_abs(value % base)];
+		value = value / base;
 	}
-	digit[0] = base_digits[ft_abs((int)(n % base))];
-	if (!(next_digit = ft_intmax_itoa_base(n / (intmax_t)base, base)))
-	{
-		free(digit);
+	if (is_negative(value) && base == 10)
+		temp[i--] = '-';
+	result = (char *)malloc(64 - i + 1);
+	if (result == NULL)
 		return (NULL);
-	}
-	final_str = ft_strjoin(next_digit, digit);
-	free(digit);
-	free(next_digit);
-	return (final_str);
+	return (ft_strcpy(result, &temp[i + 1]));
 }

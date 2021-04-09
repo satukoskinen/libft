@@ -1,42 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/29 21:30:16 by skoskine          #+#    #+#             */
-/*   Updated: 2020/08/16 10:42:07 by skoskine         ###   ########.fr       */
+/*   Created: 2021/02/18 18:44:42 by skoskine          #+#    #+#             */
+/*   Updated: 2021/03/25 19:11:43 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char		*ft_itoa_base(int n, int base)
+static int	is_negative(int value)
 {
-	char	*base_digits;
-	char	*digit;
-	char	*next_digit;
-	char	*final_str;
+	if (value < 0)
+		return (1);
+	else
+		return (0);
+}
 
-	base_digits = "0123456789abcdef";
-	if (base < 2 || base > 16 || !(digit = ft_strnew(2)))
+char	*ft_itoa_base(int value, int base)
+{
+	char	*result;
+	char	*digits;
+	char	temp[32 + 1];
+	int		i;
+
+	if (base < 2 || base > 16)
 		return (NULL);
-	if (ft_abs(n) >= 0 && ft_abs(n) < base)
+	digits = "0123456789ABCDEF";
+	i = 32;
+	temp[i--] = '\0';
+	if (value == 0)
+		temp[i--] = '0';
+	while (value != 0)
 	{
-		if (n < 0 && base == 10)
-			digit[0] = '-';
-		return (ft_strncat(digit, &base_digits[ft_abs(n % base)], 1));
+		temp[i--] = digits[ft_abs(value % base)];
+		value = value / base;
 	}
-	digit[0] = base_digits[ft_abs(n % base)];
-	if (!(next_digit = ft_itoa_base(n / base, base)))
-	{
-		free(digit);
+	if (is_negative(value) && base == 10)
+		temp[i--] = '-';
+	result = (char *)malloc(32 - i + 1);
+	if (result == NULL)
 		return (NULL);
-	}
-	final_str = ft_strjoin(next_digit, digit);
-	free(digit);
-	free(next_digit);
-	return (final_str);
+	return (ft_strcpy(result, &temp[i + 1]));
 }

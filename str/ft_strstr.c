@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 14:25:56 by skoskine          #+#    #+#             */
-/*   Updated: 2020/06/25 19:57:48 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:20:26 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	if (needle[0] == '\0')
-		return ((char*)haystack);
+		return ((char *)haystack);
 	i = 0;
 	while (haystack[i] != '\0')
 	{
@@ -26,7 +26,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		while (haystack[i + j] == needle[j] && needle[j] != '\0')
 			j++;
 		if (needle[j] == '\0')
-			return ((char*)&haystack[i]);
+			return ((char *)&haystack[i]);
 		i++;
 	}
 	return (NULL);

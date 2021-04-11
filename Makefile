@@ -134,7 +134,7 @@ SRC = $(ARR_SRC) \
 	$(PRINTF_SRC)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 CPPFLAGS = -I . -I printf -I array -I get_next_line
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c

@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 12:30:58 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 14:50:34 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/11 12:09:41 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@
 ** is encountered, the remainder after that is saved to the remainder list.
 */
 
-int	add_input(int fd, char **input, t_rlist **r_list, char **line)
+int	add_input(int fd, char *input, t_rlist **r_list, char **line)
 {
 	char	*p;
 	char	*remainder;
 	char	*new;
 
-	if (*input[0] == '\0')
-		return (0);
 	remainder = NULL;
-	p = ft_strchr(*input, '\n');
+	p = ft_strchr(input, '\n');
 	if (p != NULL)
 	{
 		*p = '\0';
@@ -38,7 +36,7 @@ int	add_input(int fd, char **input, t_rlist **r_list, char **line)
 		if (*(p + 1) != '\0' && remainder == NULL)
 			return (-1);
 	}
-	new = ft_strjoin(*line, *input);
+	new = ft_strjoin(*line, input);
 	if (new == NULL)
 		return (-1);
 	free(*line);
@@ -99,15 +97,15 @@ int	get_next_line(const int fd, char **line)
 	while (bytes_read != 0 && ret == 0)
 	{
 		bytes_read = read_to_buf(fd, (char *)buf);
-		if (bytes_read == -1)
-			return (-1);
-		ret = add_input(fd, (char **)&buf, &r_list, line);
+		if (bytes_read == -1 || bytes_read == 0)
+			break ;
+		ret = add_input(fd, buf, &r_list, line);
 	}
 	if (bytes_read == 0)
 		delete_remainder(fd, &r_list);
-	if (bytes_read == 0 && line == NULL)
+	if (bytes_read == 0 && *line == NULL)
 		return (0);
-	else if (ret == -1)
+	else if (bytes_read == -1 || ret == -1)
 		return (-1);
 	return (1);
 }

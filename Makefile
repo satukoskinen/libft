@@ -134,7 +134,7 @@ SRC = $(ARR_SRC) \
 	$(PRINTF_SRC)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 CPPFLAGS = -I . -I printf -I array -I get_next_line
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) -c
@@ -157,8 +157,6 @@ $(OBJ_DIR): ; @mkdir -p $(addprefix $@/, $(SRC_DIRS))
 
 DEPFILES = $(addprefix $(DEP_DIR)/, $(SRC:.c=.d))
 $(DEPFILES):
-
-$(GNL_SRC): get_next_line/get_next_line.h
 
 clean:
 	@rm -rf $(OBJ_DIR) $(DEP_DIR)

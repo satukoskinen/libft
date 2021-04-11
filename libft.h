@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:43:42 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/09 14:28:00 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/11 11:17:17 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <inttypes.h>
 # include <stdarg.h>
 
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1
 
 typedef struct s_list
 {

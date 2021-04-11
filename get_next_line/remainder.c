@@ -103,7 +103,7 @@ int	read_remainder(int fd, t_rlist *r_list, char **temp)
 	{
 		if (p->fd == fd && p->remainder != NULL)
 		{
-			ret = add_input(fd, &(p->remainder), &r_list, temp);
+			ret = add_input(fd, p->remainder, &r_list, temp);
 			ft_strdel(&(p->remainder));
 			return (ret);
 		}

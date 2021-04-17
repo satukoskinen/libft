@@ -6,7 +6,7 @@
 /*   By: skoskine <skoskine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 08:57:50 by skoskine          #+#    #+#             */
-/*   Updated: 2021/04/11 19:39:32 by skoskine         ###   ########.fr       */
+/*   Updated: 2021/04/17 12:00:01 by skoskine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ t_array	*array_insert(t_array **array, void *data, size_t i)
 			(*array)->data + (*array)->elem_size * i,
 			((*array)->size - i) * (*array)->elem_size);
 	}
-	ft_memcpy((*array)->data + (*array)->elem_size * i, data, (*array)->elem_size);
+	ft_memcpy((*array)->data + (*array)->elem_size * i,
+		data, (*array)->elem_size);
 	(*array)->size++;
 	return (*array);
 }
